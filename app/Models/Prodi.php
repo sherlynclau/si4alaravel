@@ -7,4 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Prodi extends Model
 {
     protected $table = 'prodi'; //nama tabel
+
+    public function fakultas() 
+    {
+        return $this->belongsTo(Fakultas::class, 'fakultas_id', 'id'); //relasi ke tabel fakultas
+        //belongsTo : 1 prodi hanya 1 fakultas
+    }
 }

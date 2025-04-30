@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama', 50);
             $table->string('singkatan', 2);
             $table->string('kaprodi', 30);
-            $table->string('wakil_kaprodi', 30);
+            $table->string('sekretaris', 30);
             $table->foreignId('fakultas_id')->constrained('fakultas')->onDelete('restrict')->onUpdate('restrict'); //menambahkan foreign key fakultas_id
             //restrict biar dk terhapus
             //onDelete('cascade') biar data di tabel prodi ikut terhapus
