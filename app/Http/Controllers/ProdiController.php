@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Prodi;
+// use App\Models\Prodi;
 use Illuminate\Http\Request;
 
 class ProdiController extends Controller
@@ -12,7 +12,8 @@ class ProdiController extends Controller
      */
     public function index()
     {
-        //
+        //panggil model prodi menggunakan eloquent
+        $prodi = Prodi::all(); // perintah select * from prodi (panggil model lalu panggil all)
     }
 
     /**
