@@ -38,7 +38,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                        <input type="text" class="form-control" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}">
+                        <input type="date" class="form-control" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}">
                         @error('tanggal_lahir')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -59,7 +59,11 @@
                       </div>
                       <div class="mb-3">
                         <label for="prodi_id" class="form-label">Prodi</label>
-                        <input type="text" class="form-control" name="prodi_id" value="{{ old('prodi_id') }}">
+                        <select class ="form-control" name="prodi_id">
+                            @foreach($prodi as $item)
+                            <option value="{{ $item->id }}"> {{ $item->nama}} </option>
+                            @endforeach
+                        </select>
                         @error('prodi_id')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
