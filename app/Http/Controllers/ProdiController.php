@@ -52,9 +52,12 @@ class ProdiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Prodi $prodi)
+    public function show($prodi)
     {
-        //
+        $prodi = Prodi::findOrFail($prodi); // mencari data prodi berdasarkan id
+        // dd($prodi); //dump and die
+        return view('prodi.show', compact('prodi')); //mengirim data ke view prodi.show
+        // pada view ini kita bisa menampilkan detail dari prodi yang dipilih
     }
 
     /**
@@ -62,7 +65,10 @@ class ProdiController extends Controller
      */
     public function edit(Prodi $prodi)
     {
-        //
+        // dd($prodi); // untuk melihat data prodi yang akan diedit
+        $fakultas = Fakultas::all(); // ambil semua data fakultas
+        return view('prodi.edit', compact('prodi', 'fakultas')); // kirim data prodi dan fakultas ke view prodi.edit
+        // pada view ini kita bisa mengedit data prodi yang dipilih
     }
 
     /**
@@ -70,14 +76,28 @@ class ProdiController extends Controller
      */
     public function update(Request $request, Prodi $prodi)
     {
-        //
+        $input = $request->validate([
+            'nama' => 'required',
+            'singkatan' => 'required|max:5',
+            'kaprodi' => 'required',
+            'sekretaris' => 'required',
+            'fakultas_id' => 'required',
+        ]);
+
+        // simpan data ke tabel prodi
+        $prodi->update($input);
+
+        // redirect ke route prodi.index
+        return redirect()->route('prodi.index')->with('success', 'Prodi berhasil ditambahkan.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Prodi $prodi)
+    public function destroy($prodi)
     {
-        //
+        $prodi = Prodi::findOrFail($prodi);
+        $prodi->delete(); //menghapus data prodi
+        return redirect()->route('prodi.index')->with('success', 'Prodi berhasil dihapus.'); //redirect ke route prodi.index
     }
 }
