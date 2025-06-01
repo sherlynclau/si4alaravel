@@ -62,8 +62,8 @@ class FakultasController extends Controller
      */
     public function edit($fakultas) //menampilkan formulir edit data fakultas
     {
-        $fakultas = Fakultas::findOrFail($fakultas);
-        return view('fakultas.edit', compact('fakultas'));
+            $fakultas = Fakultas::findOrFail($fakultas);
+            return view('fakultas.edit', compact('fakultas'));
     }
 
     /**
