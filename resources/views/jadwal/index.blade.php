@@ -49,7 +49,7 @@
                                 <td>{{ $item->kode_smt }}</td>
                                 <td>{{ $item->kelas }}</td>
                                 <td>{{ $item->matakuliah->nama }}</td>
-                                <td>{{ $item->dosen->nama }}</td>
+                                <td>{{ $item->dosen->name }}</td>
                                 <td>{{ $item->sesi->nama}}</td>
                                 <td>
                                   <a href="{{ route('jadwal.show', $item->id) }}" class="btn btn-info">Show</a>

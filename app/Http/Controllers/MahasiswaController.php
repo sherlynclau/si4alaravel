@@ -71,7 +71,9 @@ class MahasiswaController extends Controller
      */
     public function edit(Mahasiswa $mahasiswa)
     {
-        //
+        $prodi = Prodi::all(); // ambil semua data prodi
+        return view('mahasiswa.edit', compact('mahasiswa', 'prodi'));
+        // pada view ini kita bisa mengedit data mahasiswa yang dipilih
     }
 
     /**
@@ -79,7 +81,38 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
-        //
+        $input = $request->validate([
+            'npm' => 'required|unique:mahasiswa,npm,' . $mahasiswa->id,
+            'nama' => 'required',
+            'jk' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required|date',
+            'asal_sma' => 'required',
+            'prodi_id' => 'required',
+            'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // jika ada file foto
+        if ($request->hasFile('foto')) {
+            // hapus foto lama jika ada
+            if ($mahasiswa->foto) {
+                $fotoPath = public_path('images/' . $mahasiswa->foto);
+                if (file_exists($fotoPath)) {
+                    unlink($fotoPath);
+                }
+            }
+            // simpan foto baru
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $filename);
+            $input['foto'] = $filename;
+        }
+
+        // update data mahasiswa
+        $mahasiswa->update($input);
+
+        // redirect ke route mahasiswa.index
+        return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa berhasil diperbarui.');
     }
 
     /**

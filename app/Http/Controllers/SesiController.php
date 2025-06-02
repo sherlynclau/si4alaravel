@@ -46,7 +46,11 @@ class SesiController extends Controller
      */
     public function show(Sesi $sesi)
     {
-        //
+        // Mencari data sesi berdasarkan id
+        $sesi = Sesi::findOrFail($sesi->id);
+        
+        // Mengirim data sesi ke view
+        return view('sesi.show', compact('sesi'));
     }
 
     /**
