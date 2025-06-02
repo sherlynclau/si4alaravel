@@ -10,7 +10,7 @@
                   <div class="card-header"><div class="card-title">Edit Sesi</div></div>
                   <!--end::Header-->
                   <!--begin::Form-->
-                  <form action="{{ route('sesi.update'), $sesi->id}}" method="POST">
+                  <form action="{{ route('sesi.update', $sesi->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <!--begin::Body-->

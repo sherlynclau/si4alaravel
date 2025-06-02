@@ -10,7 +10,7 @@
                   <div class="card-header"><div class="card-title">Edit Jadwal</div></div>
                   <!--end::Header-->
                   <!--begin::Form-->
-                  <form action="{{ route('jadwal.update'), $jadwal->id}}" method="POST">
+                  <form action="{{ route('jadwal.update', $jadwal->id ) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <!--begin::Body-->
@@ -36,26 +36,41 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                       </div>
-                        <div class="mb-3">
-                            <label for="matakuliah_id" class="form-label">Mata Kuliah</label>
-                            <input type="text" class="form-control" name="matakuliah_id" value="{{ old('matakuliah_id') ? old('matakuliah_id') : $jadwal->matakuliah_id }}">
-                            @error('matakuliah_id')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="dosen_id" class="form-label">Dosen</label>
-                            <input type="text" class="form-control" name="dosen_id" value="{{ old('dosen_id') ? old('dosen_id') : $jadwal->dosen_id }}">
-                            @error('dosen_id')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="sesi_id" class="form-label">Sesi</label>
-                            <input type="text" class="form-control" name="sesi_id" value="{{ old('sesi_id') ? old('sesi_id') : $jadwal->sesi_id }}">
-                            @error('sesi_id')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                      <div class="mb-3">
+                        <label for="matakuliah_id" class="form-label">Mata Kuliah</label>
+                        <select class ="form-control" name="matakuliah_id">
+                            @foreach($matakuliah as $item)
+                            <option value="{{ $item->id }}" {{ old('matakuliah_id') == $item->id ? 'selected' : ($jadwal->matakuliah_id == $item->id ? 'selected' : null)}}> {{ $item->nama }} </option>
+                            @endforeach
+                        </select>
+                        @error('matakuliah_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                      </div>
+                      <div class="mb-3">
+                        <label for="dosen_id" class="form-label">Dosen</label>
+                        <select class ="form-control" name="dosen_id">
+                            @foreach($dosen as $item)
+                            <option value="{{ $item->id }}" {{ old('dosen_id') == $item->id ? 'selected' : ($jadwal->dosen_id == $item->id ? 'selected' : null)}}> {{ $item->nama }} </option>
+
+                            @endforeach
+                        </select>
+                        @error('dosen_id')
+                          <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                      </div>
+                      <div class="mb-3">
+                          <label for="sesi_id" class="form-label">Sesi</label>
+                          <select class ="form-control" name="sesi_id">
+                              @foreach($sesi as $item)
+                              <option value="{{ $item->id }}"> {{ $item->nama}} </option>
+                              <option value="{{ $item->id }}" {{ old('sesi_id') == $item->id ? 'selected' : ($jadwal->sesi_id == $item->id ? 'selected' : null)}}> {{ $item->nama }} </option>
+
+                              @endforeach
+                          </select>
+                        @error('sesi_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                         </div>
                     </div>
                     <!--end::Body-->

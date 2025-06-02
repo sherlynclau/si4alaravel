@@ -321,7 +321,7 @@
               </li>
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('sesi') }}'>
-                  <i class="nav-icon bi bi-palette"></i>
+                  <i class="nav-icon bi bi-clock-fill"></i>
                   <p>Sesi</p>
                 </a>
               </li>

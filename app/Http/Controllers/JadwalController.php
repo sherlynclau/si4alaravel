@@ -15,7 +15,7 @@ class JadwalController extends Controller
      */
     public function index()
     {
-        $jadwal = Jadwal::with(['matakuliah', 'sesi', 'prodi'])->get(); 
+        $jadwal = Jadwal::all();
         return view('jadwal.index', compact('jadwal'));
     }
 
@@ -26,7 +26,7 @@ class JadwalController extends Controller
     {
         $matakuliah = Matakuliah::all();
         $sesi = Sesi::all();
-        $dosen = User::all(); 
+        $dosen = User::where('role', 'dosen')->get();
         $jadwal = Jadwal::all(); // Mengambil semua data jadwal untuk form create
         return view('jadwal.create', compact('jadwal','matakuliah', 'sesi', 'dosen'));
     }
@@ -64,12 +64,12 @@ class JadwalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($jadwal)
+    public function edit(Jadwal $jadwal)
     {
-        $matakuliah = Matakuliah::all();
-        $sesi = Sesi::all();
-        $dosen = User::all(); 
-        return view('jadwal.create', compact('jadwal','matakuliah', 'sesi', 'dosen'));
+        $matakuliah = Matakuliah::all(); // Mengambil semua data matakuliah
+        $sesi = Sesi::all(); // Mengambil semua data sesi
+        $dosen = User::where('role', 'dosen')->get(); // Mengambil semua data dosen
+        return view('jadwal.edit', compact('jadwal', 'matakuliah', 'sesi', 'dosen')); // Mengirim data ke view jadwal.edit
     }
 
     /**
@@ -86,7 +86,7 @@ class JadwalController extends Controller
             'sesi_id' => 'required',
         ]);
 
-        // Update data ke tabel jadwal
+        // Update data jadwal
         $jadwal->update($input);
 
         // Redirect ke route jadwal.index
