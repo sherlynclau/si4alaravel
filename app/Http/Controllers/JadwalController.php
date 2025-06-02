@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
+use App\Models\Matakuliah;
+use App\Models\Sesi;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class JadwalController extends Controller
@@ -21,8 +24,11 @@ class JadwalController extends Controller
      */
     public function create()
     {
-        $jadwal = Jadwal::all();
-        return view('jadwal.create', compact('jadwal'));
+        $matakuliah = Matakuliah::all();
+        $sesi = Sesi::all();
+        $dosen = User::all(); 
+        $jadwal = Jadwal::all(); // Mengambil semua data jadwal untuk form create
+        return view('jadwal.create', compact('jadwal','matakuliah', 'sesi', 'dosen'));
     }
 
     /**
@@ -51,16 +57,19 @@ class JadwalController extends Controller
      */
     public function show(Jadwal $jadwal)
     {
-        //
+        $jadwal = Jadwal::findOrFail($jadwal->id); // Mencari data jadwal berdasarkan id
+        return view('jadwal.show', compact('jadwal')); // Mengirim data ke view jadwal.show
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Jadwal $jadwal)
+    public function edit($jadwal)
     {
-        $jadwal = Jadwal::findOrFail($jadwal->id);
-        return view('jadwal.edit', compact('jadwal'));
+        $matakuliah = Matakuliah::all();
+        $sesi = Sesi::all();
+        $dosen = User::all(); 
+        return view('jadwal.create', compact('jadwal','matakuliah', 'sesi', 'dosen'));
     }
 
     /**

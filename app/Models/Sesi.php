@@ -17,3 +17,4 @@ class Sesi extends Model
         return $this->hasMany(Jadwal::class, 'sesi_id', 'id'); 
     }
 }
+    
