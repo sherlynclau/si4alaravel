@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <!--begin::Head-->
@@ -219,7 +218,7 @@
                     alt="User Image"
                   />
                   <p>
-                    {{ Auth::user()->name}} - Dosen/Admin
+                    {{ Auth::user()->name}} - {{ strtoupper(Auth::user()->role) }}
                     <small>Member since Nov. 2023</small>
                   </p>
                 </li>
@@ -291,31 +290,31 @@
             >
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('dashboard') }}'>
-                  <i class="nav-icon bi bi-palette"></i>
+                  <i class="nav-icon bi bi-speedometer2"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('fakultas') }}'>
-                  <i class="nav-icon bi bi-palette"></i>
+                  <i class="nav-icon bi bi-building"></i>
                   <p>Fakultas</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('mahasiswa') }}'>
-                  <i class="nav-icon bi bi-palette"></i>
+                  <i class="nav-icon bi bi-person-lines-fill"></i>
                   <p>Mahasiswa</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('prodi') }}'>
-                  <i class="nav-icon bi bi-palette"></i>
+                  <i class="nav-icon bi bi-journal-bookmark-fill"></i>
                   <p>Prodi</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('matakuliah') }}'>
-                  <i class="nav-icon bi bi-palette"></i>
+                  <i class="nav-icon bi bi-book-half"></i>
                   <p>Mata Kuliah</p>
                 </a>
               </li>
@@ -327,7 +326,7 @@
               </li>
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('jadwal') }}'>
-                  <i class="nav-icon bi bi-palette"></i>
+                  <i class="nav-icon bi bi-calendar-event"></i>
                   <p>Jadwal</p>
                 </a>
               </li>
