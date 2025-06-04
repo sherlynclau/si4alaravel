@@ -51,7 +51,7 @@
                         <label for="dosen_id" class="form-label">Dosen</label>
                         <select class ="form-control" name="dosen_id">
                             @foreach($dosen as $item)
-                            <option value="{{ $item->id }}" {{ old('dosen_id') == $item->id ? 'selected' : ($jadwal->dosen_id == $item->id ? 'selected' : null)}}> {{ $item->nama }} </option>
+                            <option value="{{ $item->id }}" {{ old('dosen_id') == $item->id ? 'selected' : ($jadwal->dosen_id == $item->id ? 'selected' : null)}}> {{ $item->name }} </option>
 
                             @endforeach
                         </select>
@@ -63,7 +63,6 @@
                           <label for="sesi_id" class="form-label">Sesi</label>
                           <select class ="form-control" name="sesi_id">
                               @foreach($sesi as $item)
-                              <option value="{{ $item->id }}"> {{ $item->nama}} </option>
                               <option value="{{ $item->id }}" {{ old('sesi_id') == $item->id ? 'selected' : ($jadwal->sesi_id == $item->id ? 'selected' : null)}}> {{ $item->nama }} </option>
 
                               @endforeach
